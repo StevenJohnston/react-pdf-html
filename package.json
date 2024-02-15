@@ -19,8 +19,7 @@
     "build": "rm -rf dist && tsc -p .",
     "coverage": "NODE_ENV=test jest --coverage",
     "pretty-check": "prettier --check \"**/*.{js,ts,tsx,json,md}\"",
-    "pretty": "prettier --write \"**/*.{js,ts,tsx,json,md}\"",
-    "install": "npm run build"
+    "pretty": "prettier --write \"**/*.{js,ts,tsx,json,md}\""
   },
   "dependencies": {
     "@types/sync-fetch": "^0.4.3",
