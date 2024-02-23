@@ -13,7 +13,7 @@ export declare type HtmlRendererProps = {
 export declare type HtmlRenderer = React.FC<React.PropsWithChildren<HtmlRendererProps>>;
 export declare type WrapperRenderer = (Wrapper: React.ElementType, renderer: HtmlRendererProps) => React.ReactElement;
 export declare type HtmlRenderers = Record<Tag | string, HtmlRenderer>;
-export declare type ClassNameRenderer = (className: string | undefined) => Style;
+export declare type ClassNameRenderer = (className: string) => Style;
 export declare type HtmlRenderOptions = {
     collapse: boolean;
     renderers: HtmlRenderers;

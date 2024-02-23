@@ -22,7 +22,7 @@ export type WrapperRenderer = (
 
 export type HtmlRenderers = Record<Tag | string, HtmlRenderer>;
 
-export type ClassNameRenderer = (className: string | undefined) => Style;
+export type ClassNameRenderer = (className: string) => Style;
 
 export type HtmlRenderOptions = {
   collapse: boolean;

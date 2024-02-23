@@ -33,7 +33,7 @@
     "react": ">=16"
   },
   "devDependencies": {
-    "@react-pdf/renderer": "^3.1.17",
+    "@react-pdf/renderer": "^3.3.7",
     "@types/css-tree": "^1.0.6",
     "@types/jest": "^25.2.3",
     "@types/node": "^14.0.25",
