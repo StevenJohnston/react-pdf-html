@@ -155,6 +155,7 @@ type HtmlProps = {
   style?: Style | Style[]; // Html root View style
   stylesheet?: HtmlStyles | HtmlStyles[]; // Mapping of { selector: Style }
   resetStyles?: false; // If true, style/CSS reset
+  classNameRenderer: ClassNameRenderer; // Mapping of {className: Style}
 };
 ```
 

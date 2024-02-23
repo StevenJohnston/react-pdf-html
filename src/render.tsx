@@ -22,11 +22,14 @@ export type WrapperRenderer = (
 
 export type HtmlRenderers = Record<Tag | string, HtmlRenderer>;
 
+export type ClassNameRenderer = (className: string | undefined) => Style;
+
 export type HtmlRenderOptions = {
   collapse: boolean;
   renderers: HtmlRenderers;
   stylesheets: HtmlStyles[];
   resetStyles: boolean;
+  classNameRenderer?: ClassNameRenderer;
 };
 
 type ContentBucket = {
@@ -152,7 +155,8 @@ export const renderElement = (
   stylesheets: HtmlStyles[],
   renderers: HtmlRenderers,
   children?: any,
-  index?: number
+  index?: number,
+  classNameRender?: ClassNameRenderer
 ): RenderedContent => {
   if (typeof element === 'string') {
     element = convertEntities(element);
@@ -181,10 +185,16 @@ export const renderElement = (
     }
   }
 
+  let elementStyles = [];
+  if (classNameRender) {
+    elementStyles.push(classNameRender?.(element.classNames));
+  }
+  elementStyles.push(...element.style);
+
   return (
     <Element
       key={index}
-      style={element.style}
+      style={elementStyles}
       children={children}
       element={element}
       stylesheets={stylesheets}
@@ -206,7 +216,8 @@ export const renderBucketElement = (
       options.stylesheets,
       options.renderers,
       undefined,
-      index
+      index,
+      options.classNameRenderer
     );
   }
   return renderElement(
@@ -218,7 +229,8 @@ export const renderBucketElement = (
       element.tag === 'pre' ? { ...options, collapse: false } : options,
       element
     ),
-    index
+    index,
+    options.classNameRenderer
   );
 };
 
@@ -325,6 +337,7 @@ const renderHtml = (
     style?: Style | Style[];
     stylesheet?: HtmlStyles | HtmlStyles[];
     resetStyles?: boolean;
+    classNameRenderer?: ClassNameRenderer;
   } = {}
 ): ReactElement => {
   const defaultFontSize = 18;
